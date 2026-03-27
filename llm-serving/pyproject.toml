@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "llm-serving"
+version = "0.1.0"
+description = "Optimized LLM Inference Server with vLLM, FastAPI, and quantization"
+authors = ["learner"]
+readme = "README.md"
+packages = [{include = "llm_serving", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+vllm = "^0.6"
+fastapi = "^0.115"
+uvicorn = "^0.34"
+pydantic = "^2.6"
+pydantic-settings = "^2.7"
+httpx = "^0.28"
+prometheus-client = "^0.21"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = "^0.24"
+pytest-cov = "^4.1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

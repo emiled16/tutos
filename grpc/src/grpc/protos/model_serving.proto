@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package model_serving;
+
+// TODO: Implement the full service and message definitions below.
+// The signatures are provided; fill in any additional fields as needed.
+
+// --- Messages ---
+
+// Represents a numpy array serialized for transport.
+message NDArray {
+  repeated int32 shape = 1;   // Array dimensions, e.g. [32, 10]
+  bytes data = 2;             // Raw bytes of the array
+  string dtype = 3;           // Numpy dtype string, e.g. "float32"
+}
+
+// Request for a single prediction.
+message PredictRequest {
+  string model_name = 1;          // Name of the model to use
+  string model_version = 2;       // Optional model version (empty = latest)
+  NDArray features = 3;           // Input feature array
+  map<string, string> metadata = 4; // Optional request metadata
+}
+
+// Response from a single prediction.
+message PredictResponse {
+  NDArray predictions = 1;        // Output prediction array
+  string model_name = 2;          // Model that produced the prediction
+  string model_version = 3;       // Version of the model used
+  float latency_ms = 4;           // Server-side inference latency
+}
+
+// Information about a loaded model.
+message ModelInfo {
+  string name = 1;
+  string version = 2;
+  string status = 3;             // "loaded", "loading", "failed"
+  int64 loaded_at_epoch = 4;     // Unix timestamp when model was loaded
+  repeated string input_names = 5;
+  repeated string output_names = 6;
+}
+
+// Request to list available models.
+message ListModelsRequest {}
+
+// Response with all available models.
+message ListModelsResponse {
+  repeated ModelInfo models = 1;
+}
+
+// Request to reload a model.
+message ReloadModelRequest {
+  string model_name = 1;
+  string model_path = 2;         // Optional new path for the model
+}
+
+// Response after reloading a model.
+message ReloadModelResponse {
+  bool success = 1;
+  string message = 2;
+  ModelInfo model_info = 3;
+}
+
+// --- Service ---
+
+service PredictService {
+  // Unary RPC: single prediction request/response.
+  rpc Predict(PredictRequest) returns (PredictResponse);
+
+  // Server-streaming RPC: stream predictions for batched input.
+  // The server splits the input batch and streams individual predictions.
+  rpc StreamPredict(PredictRequest) returns (stream PredictResponse);
+
+  // List all loaded models.
+  rpc ListModels(ListModelsRequest) returns (ListModelsResponse);
+
+  // Hot-reload a model.
+  rpc ReloadModel(ReloadModelRequest) returns (ReloadModelResponse);
+}

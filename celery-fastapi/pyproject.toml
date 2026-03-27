@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "celery-fastapi"
+version = "0.1.0"
+description = "Distributed ML task queue with FastAPI, Celery, and Redis"
+authors = ["learner"]
+readme = "README.md"
+packages = [{include = "celery_fastapi", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = ">=0.110"
+uvicorn = {version = ">=0.29", extras = ["standard"]}
+celery = {version = "^5.3", extras = ["redis"]}
+redis = "^5.0"
+pydantic = "^2.0"
+pydantic-settings = "^2.0"
+websockets = ">=12.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = ">=0.23"
+httpx = ">=0.27"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

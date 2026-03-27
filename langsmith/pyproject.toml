@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "langsmith-tutorial"
+version = "0.1.0"
+description = "LLM Evaluation Pipeline with LangSmith tracing, custom evaluators, and prompt versioning"
+authors = ["learner"]
+readme = "README.md"
+packages = [{include = "langsmith", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.3"
+langchain-openai = "^0.3"
+langchain-community = "^0.3"
+langsmith = "^0.2"
+openai = "^1.60"
+pydantic = "^2.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = "^0.24"
+pytest-cov = "^4.1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

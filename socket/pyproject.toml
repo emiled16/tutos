@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "socket-project"
+version = "0.1.0"
+description = "Real-Time Anomaly Detection Stream — WebSocket-based anomaly detection system"
+authors = []
+readme = "README.md"
+packages = [{include = "socket", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+websockets = "^13.0"
+numpy = "^1.26"
+scikit-learn = "^1.4"
+pydantic = "^2.6"
+pydantic-settings = "^2.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = "^0.23"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

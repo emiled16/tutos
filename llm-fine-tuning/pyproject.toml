@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "llm-fine-tuning"
+version = "0.1.0"
+description = "Domain Expert LLM fine-tuning with LoRA/QLoRA using PEFT and HuggingFace"
+authors = ["learner"]
+readme = "README.md"
+packages = [{include = "llm_fine_tuning", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+transformers = "^4.47"
+peft = "^0.14"
+bitsandbytes = "^0.45"
+datasets = "^3.2"
+accelerate = "^1.2"
+trl = "^0.14"
+evaluate = "^0.4"
+rouge-score = "^0.1"
+pydantic = "^2.6"
+torch = "^2.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^4.1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

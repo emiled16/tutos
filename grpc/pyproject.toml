@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "grpc-serving"
+version = "0.1.0"
+description = "High-Performance ML Model Server with gRPC"
+authors = ["learner"]
+readme = "README.md"
+packages = [{include = "grpc", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+grpcio = "^1.68"
+grpcio-tools = "^1.68"
+protobuf = "^5.29"
+numpy = "^1.26"
+scikit-learn = "^1.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^4.1"
+grpcio-testing = "^1.68"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

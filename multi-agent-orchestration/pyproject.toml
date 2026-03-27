@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "multi-agent-orchestration"
+version = "0.1.0"
+description = "Research Agent Swarm – a multi-agent system where specialized agents collaborate to produce comprehensive research reports"
+authors = ["emdim"]
+readme = "README.md"
+packages = [{include = "multi_agent_orchestration", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^1.0"
+langchain = "^0.3"
+langchain-openai = "^0.3"
+pydantic = "^2.0"
+networkx = "^3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = "^0.24"
+pytest-cov = "^6.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

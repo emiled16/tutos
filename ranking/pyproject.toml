@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "ranking"
+version = "0.1.0"
+description = "Learning-to-rank system for search results using LambdaMART"
+authors = []
+readme = "README.md"
+packages = [{include = "ranking", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+lightgbm = "^4.5"
+scikit-learn = "^1.5"
+pandas = "^2.2"
+numpy = "^1.26"
+fastapi = "^0.115"
+uvicorn = {version = "^0.34", extras = ["standard"]}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+httpx = "^0.28"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

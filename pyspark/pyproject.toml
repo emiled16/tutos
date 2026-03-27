@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pyspark-project"
+version = "0.1.0"
+description = "Large-Scale Feature Factory – a PySpark feature engineering pipeline for e-commerce data"
+authors = ["emdim"]
+readme = "README.md"
+packages = [{include = "pyspark", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyspark = "^3.5"
+delta-spark = "^3.0"
+pandas = "^2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+chispa = "^0.10"
+pytest-cov = "^6.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

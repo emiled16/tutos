@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "process-mining"
+version = "0.1.0"
+description = "Process Discovery & Conformance Engine — discover process models from event logs, check conformance, and identify bottlenecks"
+authors = ["emdim"]
+readme = "README.md"
+packages = [{include = "process_mining", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2"
+numpy = "^1.26"
+graphviz = "^0.20"
+networkx = "^3.2"
+pydantic = "^2.6"
+lxml = "^5.1"
+matplotlib = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^4.1"
+ruff = "^0.3"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
