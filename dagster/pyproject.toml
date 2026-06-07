@@ -4,10 +4,10 @@ version = "0.1.0"
 description = "Software-defined ML assets pipeline with Dagster"
 authors = ["learner"]
 readme = "README.md"
-packages = [{include = "dagster", from = "src"}]
+packages = [{include = "src", from = "."}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.15"
 dagster = ">=1.7"
 dagster-webserver = ">=1.7"
 pandas = "^2.0"
@@ -26,3 +26,7 @@ addopts = "-v --tb=short"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.dagster]
+module_name = "definitions"
+working_directory = "src"
